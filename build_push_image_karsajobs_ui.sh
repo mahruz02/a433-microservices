@@ -4,6 +4,6 @@
 docker build -t mahruz01/karsajobs-ui:latest -f Dockerfile .
 
 # Login to Docker Hub
-docker login -u mahruz01
+docker login -u mahruz01 -p
 # Push image to Docker Hub
 docker push mahruz01/karsajobs-ui:latest
