@@ -1,19 +1,27 @@
 apiVersion: apps/v1
+
 kind: Deployment
+
 metadata:
-  name: karsajobs-deployment
+  name: karsajobs-microservices
+  labels:
+    app: karsajobs
+    tier: backend
+
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: karsajobs
-  replicas: 3
+      tier: backend
   template:
     metadata:
       labels:
         app: karsajobs
+        tier: backend
     spec:
       containers:
-        - name: karsajobs
+        - name: karsajobs-microservices
           image: mahruz01/karsajobs:latest
           ports:
             - containerPort: 8080
@@ -21,7 +29,7 @@ spec:
             - name: APP_PORT
               value: "8080"
             - name: MONGO_HOST
-              value: mongodb-service
+              value: "karsajobs-database"
             - name: MONGO_USER
               valueFrom:
                 secretKeyRef:

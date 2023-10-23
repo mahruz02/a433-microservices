@@ -1,19 +1,20 @@
+# gunakan api versi 1
 apiVersion: v1
 
+# tentukan jenis object = Service
 kind: Service
 
+# tambahkan metadata
 metadata:
-  name: karsajobs-microservices
+  name: karsajobs-database
   labels:
     app: karsajobs
     tier: backend
 
 spec:
   ports:
-  - name: default
-    port: 8080
-    protocol: TCP
+    - port: 27017
   selector:
     app: karsajobs
     tier: backend
-  type: NodePort
+  clusterIP: None

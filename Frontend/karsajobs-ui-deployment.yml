@@ -1,22 +1,34 @@
+# gunakan API versi 1
 apiVersion: apps/v1
+
+# tentukan jenis object = deployment
 kind: Deployment
+
+
 metadata:
-  name: karsajobs-ui-deployment
+
+  name: karsajobs-ui
+
+  labels:
+    app: karsajobs
+    tier: frontend
+
+
 spec:
+
+  replicas: 1
   selector:
     matchLabels:
-      app: karsajobs-ui
-  replicas: 3
+      app: karsajobs
+      tier: frontend
   template:
     metadata:
       labels:
-        app: karsajobs-ui
+        app: karsajobs
+        tier: frontend
     spec:
       containers:
         - name: karsajobs-ui
           image: mahruz01/karsajobs-ui:latest
           ports:
-            - containerPort: 8080
-          env:
-            - name: VUE_APP_BACKEND
-              value: http://<backend-service-ip>:8080
+            - containerPort: 8000

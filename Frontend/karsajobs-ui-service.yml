@@ -1,12 +1,26 @@
+# gunakan API versi 1
 apiVersion: v1
+
+# tentukan jenis object = Service
 kind: Service
+
+
 metadata:
-  name: karsajobs-ui-service
+
+  name: karsajobs-ui
+
+  labels:
+    app: karsajobs
+    tier: frontend
+
+
 spec:
-  selector:
-    app: karsajobs-ui
+
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: LoadBalancer
+  - name: default
+    port: 8000
+    protocol: TCP
+  selector:
+    app: karsajobs
+    tier: frontend
+  type: NodePort
